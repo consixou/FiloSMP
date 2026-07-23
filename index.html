@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shield Network – Minecraft Java 1.21.10</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="https://i.pinimg.com/736x/97/5d/86/975d868bd40b418decef530f26f4da3f.jpg" type="image/jpeg">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
@@ -23,19 +24,15 @@
     cursor:none;
   }
 
-  /* Cursor */
   #cur{position:fixed;width:22px;height:22px;border-radius:50%;background:rgba(34,197,94,0.5);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:screen}
   #cur2{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--green);pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
 
-  /* Mouse glow on bg */
   .bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;transition:background .1s}
 
-  /* Floating bubbles */
   .bubbles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
   .bubble{position:absolute;border-radius:50%;background:rgba(34,197,94,0.08);animation:rise var(--d,14s) ease-in infinite var(--del,0s)}
   @keyframes rise{0%{transform:translateY(110vh) scale(1);opacity:0}10%{opacity:1}90%{opacity:.4}100%{transform:translateY(-10vh) scale(1.2);opacity:0}}
 
-  /* Nav */
   nav{
     position:sticky;top:12px;z-index:100;
     max-width:900px;margin:12px auto 0;
@@ -45,8 +42,8 @@
     box-shadow:0 8px 32px rgba(0,0,0,0.5);
     backdrop-filter:blur(12px);
   }
-  .nav-logo{width:44px;height:44px;border-radius:12px;overflow:hidden;margin-right:12px;flex-shrink:0;box-shadow:0 4px 12px rgba(34,197,94,0.4);background:var(--green);display:flex;align-items:center;justify-content:center;font-size:22px}
-  .nav-logo img{width:100%;height:100%;object-fit:cover}
+  .nav-logo{width:44px;height:44px;border-radius:12px;overflow:hidden;margin-right:12px;flex-shrink:0;box-shadow:0 0 16px rgba(34,197,94,0.5);background:#000;display:flex;align-items:center;justify-content:center}
+  .nav-logo img{width:100%;height:100%;object-fit:contain}
   .nav-links{display:flex;gap:4px;flex:1}
   .nav-links a{color:#a3a3a3;text-decoration:none;font-size:15px;font-weight:700;padding:8px 16px;border-radius:999px;transition:background .2s,color .2s}
   .nav-links a:hover{background:rgba(34,197,94,0.15);color:var(--green)}
@@ -54,16 +51,13 @@
   .nav-play:hover{background:var(--green2);transform:scale(1.04);box-shadow:0 6px 24px rgba(34,197,94,0.5)}
   .nav-play::before{content:'📋';font-size:12px}
 
-  /* Main grid */
   .main{position:relative;z-index:1;max-width:900px;margin:28px auto 40px;padding:0 16px}
 
   .grid{display:grid;grid-template-columns:220px 1fr;grid-template-rows:auto auto auto;gap:14px}
 
-  /* Cards base */
   .card{border-radius:var(--card-r);overflow:hidden;position:relative;cursor:none;transition:transform .2s,box-shadow .2s}
   .card:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 16px 40px rgba(0,0,0,0.4)}
 
-  /* Left tall card – Discord */
   .card-discord{
     grid-row:1/4;
     background:linear-gradient(160deg,#1e1b4b 0%,#312e81 100%);
@@ -79,7 +73,6 @@
   .card-discord .card-btn{background:white;color:#4f46e5;border:none;padding:10px 24px;border-radius:999px;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;cursor:none;transition:all .2s}
   .card-discord .card-btn:hover{background:#e0e7ff;transform:scale(1.05)}
 
-  /* Top right – Hero banner */
   .card-hero{
     grid-column:2;grid-row:1;
     background:linear-gradient(135deg,#0a0a0a 0%,#111111 50%,#0d1f0d 100%);
@@ -98,9 +91,8 @@
   .card-hero-badge{background:rgba(34,197,94,.15);border:1.5px solid rgba(34,197,94,.35);color:var(--green);padding:5px 14px;border-radius:999px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:6px;margin-bottom:12px}
   .card-hero-badge span{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}
-  .card-hero-img{font-size:80px;flex-shrink:0;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));animation:bob 3.5s ease-in-out infinite}
+  .card-hero-img{width:110px;height:110px;flex-shrink:0;object-fit:contain;filter:drop-shadow(0 0 20px rgba(34,197,94,.6));animation:bob 3.5s ease-in-out infinite}
 
-  /* Middle right – Play now */
   .card-play{
     grid-column:2;grid-row:2;
     background:linear-gradient(135deg,var(--green) 0%,#15803d 100%);
@@ -108,13 +100,11 @@
     padding:24px 32px;cursor:none;
     box-shadow:0 8px 32px rgba(34,197,94,0.35);
   }
-  .card-play-left{}
   .card-play h2{font-size:clamp(22px,3vw,30px);font-weight:900;color:#0a0a0a;letter-spacing:.5px;text-transform:uppercase}
   .card-play p{font-size:14px;font-weight:700;color:rgba(0,0,0,.7);margin-top:4px}
   .card-play p strong{color:#0a0a0a}
   .card-play-icon{font-size:56px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.2))}
 
-  /* Bottom row – two cards */
   .card-vote{
     grid-column:2;grid-row:3;
     display:grid;grid-template-columns:1fr 1fr;gap:14px;
@@ -142,7 +132,6 @@
   .card-survival p{font-size:12px;color:rgba(255,255,255,.6);font-weight:700;margin-top:3px}
   .card-survival .v-icon{font-size:44px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.2))}
 
-  /* How to join section */
   .steps-section{position:relative;z-index:1;max-width:900px;margin:0 auto 60px;padding:0 16px}
   .steps-title{font-size:22px;font-weight:900;color:white;margin-bottom:16px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
   .steps-title span{color:#0a0a0a;background:var(--green);padding:2px 12px;border-radius:999px;margin-right:8px}
@@ -154,12 +143,10 @@
   .step-desc{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
   .step-ip{display:inline-block;background:rgba(34,197,94,.15);color:var(--green);font-family:'Courier New',monospace;font-size:13px;padding:4px 12px;border-radius:8px;margin-top:8px;font-weight:700;cursor:pointer;border:1px solid rgba(34,197,94,.3)}
 
-  /* Footer */
   footer{position:relative;z-index:1;text-align:center;padding:0 16px 32px;color:rgba(255,255,255,.5);font-size:13px;font-weight:700}
   footer strong{color:var(--green)}
   footer a{color:var(--green)}
 
-  /* Toast */
   .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#0a0a0a;padding:12px 24px;font-weight:800;font-size:14px;z-index:999;transition:transform .3s ease;pointer-events:none;border-radius:999px;box-shadow:0 8px 24px rgba(34,197,94,.3)}
   .toast.show{transform:translateX(-50%) translateY(0)}
 
@@ -184,7 +171,7 @@
 
 <!-- Nav -->
 <nav>
-  <div class="nav-logo">🛡️</div>
+  <div class="nav-logo"><img src="https://i.pinimg.com/736x/97/5d/86/975d868bd40b418decef530f26f4da3f.jpg" alt="Shield Network"></div>
   <div class="nav-links">
     <a href="#rejoindre">Rejoindre</a>
     <a href="#features">Fonctionnalités</a>
@@ -215,7 +202,7 @@
           <button onclick="copyIP()">📋 Copier</button>
         </div>
       </div>
-      <div class="card-hero-img" style="font-size:72px">🛡️</div>
+      <img src="https://i.pinimg.com/736x/97/5d/86/975d868bd40b418decef530f26f4da3f.jpg" alt="Shield Network" class="card-hero-img">
     </div>
 
     <!-- Play now -->
@@ -277,7 +264,6 @@
 <div class="toast" id="toast">✅ IP copiée !</div>
 
 <script>
-  // Bubbles
   const bEl = document.getElementById('bubbles');
   for(let i=0;i<18;i++){
     const b=document.createElement('div'); b.className='bubble';
@@ -286,7 +272,6 @@
     bEl.appendChild(b);
   }
 
-  // Cursor
   const cur=document.getElementById('cur'), cur2=document.getElementById('cur2');
   let cx=0,cy=0,cx2=0,cy2=0;
   document.addEventListener('mousemove',e=>{
