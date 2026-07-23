@@ -1,56 +1,58 @@
 <!DOCTYPE html>
-<html lang="fr"><head>
+<html lang="fr">
+<head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Filo SMP – Minecraft Java 1.21.10</title>
-<link href="Filo%20SMP%20%E2%80%93%20Minecraft%20Java%201.21.10_files/css2.css" rel="stylesheet">
+<title>Shield Network – Minecraft Java 1.21.10</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{
-    --sky1:#29d0f5;--sky2:#0ab8e8;--sky3:#07a0d0;
-    --green:#3de84a;--green2:#2ed63a;
-    --white:#ffffff;--text-dark:#1a2a35;
+    --green:#22c55e;--green2:#16a34a;
+    --black:#0a0a0a;--dark:#111111;--darker:#0d0d0d;
+    --white:#ffffff;--text:#e5e5e5;
     --card-r:20px;
   }
   html{scroll-behavior:smooth}
   body{
     font-family:'Nunito',sans-serif;
     min-height:100vh;
-    background:linear-gradient(160deg,#5de8ff 0%,#1bc8f0 40%,#09aee0 100%);
+    background:linear-gradient(160deg,#0a0a0a 0%,#111111 40%,#0d1a0d 100%);
     overflow-x:hidden;
     cursor:none;
   }
 
   /* Cursor */
-  #cur{position:fixed;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.7);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:overlay}
-  #cur2{position:fixed;width:10px;height:10px;border-radius:50%;background:white;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+  #cur{position:fixed;width:22px;height:22px;border-radius:50%;background:rgba(34,197,94,0.5);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s;mix-blend-mode:screen}
+  #cur2{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--green);pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
 
   /* Mouse glow on bg */
   .bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;transition:background .1s}
 
   /* Floating bubbles */
   .bubbles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-  .bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,0.12);animation:rise var(--d,14s) ease-in infinite var(--del,0s)}
+  .bubble{position:absolute;border-radius:50%;background:rgba(34,197,94,0.08);animation:rise var(--d,14s) ease-in infinite var(--del,0s)}
   @keyframes rise{0%{transform:translateY(110vh) scale(1);opacity:0}10%{opacity:1}90%{opacity:.4}100%{transform:translateY(-10vh) scale(1.2);opacity:0}}
 
   /* Nav */
   nav{
     position:sticky;top:12px;z-index:100;
     max-width:900px;margin:12px auto 0;
-    background:white;border-radius:999px;
+    background:rgba(17,17,17,0.95);border:1px solid rgba(34,197,94,0.2);border-radius:999px;
     display:flex;align-items:center;gap:0;
     padding:8px 12px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.12);
+    box-shadow:0 8px 32px rgba(0,0,0,0.5);
+    backdrop-filter:blur(12px);
   }
-  .nav-logo{width:44px;height:44px;border-radius:12px;overflow:hidden;margin-right:12px;flex-shrink:0;box-shadow:0 4px 12px rgba(74,222,128,0.4)}
+  .nav-logo{width:44px;height:44px;border-radius:12px;overflow:hidden;margin-right:12px;flex-shrink:0;box-shadow:0 4px 12px rgba(34,197,94,0.4);background:var(--green);display:flex;align-items:center;justify-content:center;font-size:22px}
   .nav-logo img{width:100%;height:100%;object-fit:cover}
   .nav-links{display:flex;gap:4px;flex:1}
-  .nav-links a{color:#334155;text-decoration:none;font-size:15px;font-weight:700;padding:8px 16px;border-radius:999px;transition:background .2s,color .2s}
-  .nav-links a:hover{background:#f1f5f9;color:#0f172a}
-  .nav-play{background:var(--green);color:white;border:none;padding:10px 24px;border-radius:999px;font-weight:900;font-size:15px;font-family:'Nunito',sans-serif;cursor:none;display:flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 16px rgba(61,232,74,0.4);white-space:nowrap}
-  .nav-play:hover{background:var(--green2);transform:scale(1.04);box-shadow:0 6px 24px rgba(61,232,74,0.5)}
-  .nav-play::before{content:'⬇';font-size:12px}
+  .nav-links a{color:#a3a3a3;text-decoration:none;font-size:15px;font-weight:700;padding:8px 16px;border-radius:999px;transition:background .2s,color .2s}
+  .nav-links a:hover{background:rgba(34,197,94,0.15);color:var(--green)}
+  .nav-play{background:var(--green);color:#0a0a0a;border:none;padding:10px 24px;border-radius:999px;font-weight:900;font-size:15px;font-family:'Nunito',sans-serif;cursor:none;display:flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 16px rgba(34,197,94,0.4);white-space:nowrap}
+  .nav-play:hover{background:var(--green2);transform:scale(1.04);box-shadow:0 6px 24px rgba(34,197,94,0.5)}
+  .nav-play::before{content:'📋';font-size:12px}
 
   /* Main grid */
   .main{position:relative;z-index:1;max-width:900px;margin:28px auto 40px;padding:0 16px}
@@ -59,55 +61,57 @@
 
   /* Cards base */
   .card{border-radius:var(--card-r);overflow:hidden;position:relative;cursor:none;transition:transform .2s,box-shadow .2s}
-  .card:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 16px 40px rgba(0,0,0,0.18)}
+  .card:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 16px 40px rgba(0,0,0,0.4)}
 
   /* Left tall card – Discord */
   .card-discord{
     grid-row:1/4;
-    background:linear-gradient(160deg,#7b8ef7 0%,#5865F2 100%);
+    background:linear-gradient(160deg,#1e1b4b 0%,#312e81 100%);
     display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
     padding:24px 20px;min-height:480px;
-    box-shadow:0 8px 32px rgba(88,101,242,0.35);
+    box-shadow:0 8px 32px rgba(88,101,242,0.25);
+    border:1px solid rgba(99,102,241,0.2);
   }
   .card-discord .big-emoji{font-size:100px;position:absolute;top:30px;left:50%;transform:translateX(-50%);filter:drop-shadow(0 8px 24px rgba(0,0,0,0.25));animation:bob 3s ease-in-out infinite}
   @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-10px)}}
   .card-discord .card-label{font-size:28px;font-weight:900;color:white;letter-spacing:.5px;margin-bottom:6px}
   .card-discord .card-sub{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:18px}
-  .card-discord .card-btn{background:white;color:#5865F2;border:none;padding:10px 24px;border-radius:999px;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;cursor:none;transition:all .2s}
-  .card-discord .card-btn:hover{background:#e8ebff;transform:scale(1.05)}
+  .card-discord .card-btn{background:white;color:#4f46e5;border:none;padding:10px 24px;border-radius:999px;font-weight:900;font-size:14px;font-family:'Nunito',sans-serif;cursor:none;transition:all .2s}
+  .card-discord .card-btn:hover{background:#e0e7ff;transform:scale(1.05)}
 
   /* Top right – Hero banner */
   .card-hero{
     grid-column:2;grid-row:1;
-    background:linear-gradient(135deg,#0f2744 0%,#1a3a5c 100%);
+    background:linear-gradient(135deg,#0a0a0a 0%,#111111 50%,#0d1f0d 100%);
     display:flex;align-items:center;justify-content:space-between;
     padding:28px 32px;gap:20px;
     min-height:160px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.2);
+    box-shadow:0 8px 32px rgba(0,0,0,0.4);
+    border:1px solid rgba(34,197,94,0.15);
   }
   .card-hero-text h1{font-size:clamp(20px,3vw,28px);font-weight:900;color:white;line-height:1.2;margin-bottom:12px}
   .card-hero-text h1 span{color:var(--green)}
-  .card-hero-ip{display:flex;align-items:center;gap:0;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:12px;overflow:hidden}
+  .card-hero-ip{display:flex;align-items:center;gap:0;background:rgba(34,197,94,.08);border:1.5px solid rgba(34,197,94,.25);border-radius:12px;overflow:hidden}
   .card-hero-ip span{padding:10px 14px;font-family:'Courier New',monospace;font-size:14px;font-weight:700;color:white;user-select:all}
-  .card-hero-ip button{padding:10px 16px;background:var(--green);border:none;color:#071018;font-weight:900;font-size:13px;font-family:'Nunito',sans-serif;cursor:none;transition:background .2s;white-space:nowrap}
+  .card-hero-ip button{padding:10px 16px;background:var(--green);border:none;color:#0a0a0a;font-weight:900;font-size:13px;font-family:'Nunito',sans-serif;cursor:none;transition:background .2s;white-space:nowrap}
   .card-hero-ip button:hover{background:var(--green2)}
-  .card-hero-badge{background:rgba(61,232,74,.15);border:1.5px solid rgba(61,232,74,.35);color:var(--green);padding:5px 14px;border-radius:999px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:6px;margin-bottom:12px}
+  .card-hero-badge{background:rgba(34,197,94,.15);border:1.5px solid rgba(34,197,94,.35);color:var(--green);padding:5px 14px;border-radius:999px;font-size:12px;font-weight:800;display:inline-flex;align-items:center;gap:6px;margin-bottom:12px}
   .card-hero-badge span{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(61,232,74,.6)}50%{box-shadow:0 0 0 5px rgba(61,232,74,0)}}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.6)}50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}}
   .card-hero-img{font-size:80px;flex-shrink:0;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));animation:bob 3.5s ease-in-out infinite}
 
   /* Middle right – Play now */
   .card-play{
     grid-column:2;grid-row:2;
-    background:linear-gradient(135deg,var(--green) 0%,#1bc44a 100%);
+    background:linear-gradient(135deg,var(--green) 0%,#15803d 100%);
     display:flex;align-items:center;justify-content:space-between;
     padding:24px 32px;cursor:none;
-    box-shadow:0 8px 32px rgba(61,232,74,0.4);
+    box-shadow:0 8px 32px rgba(34,197,94,0.35);
   }
   .card-play-left{}
-  .card-play h2{font-size:clamp(22px,3vw,30px);font-weight:900;color:white;letter-spacing:.5px;text-transform:uppercase}
-  .card-play p{font-size:14px;font-weight:700;color:rgba(255,255,255,.8);margin-top:4px}
-  .card-play p strong{color:white}
+  .card-play h2{font-size:clamp(22px,3vw,30px);font-weight:900;color:#0a0a0a;letter-spacing:.5px;text-transform:uppercase}
+  .card-play p{font-size:14px;font-weight:700;color:rgba(0,0,0,.7);margin-top:4px}
+  .card-play p strong{color:#0a0a0a}
   .card-play-icon{font-size:56px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.2))}
 
   /* Bottom row – two cards */
@@ -116,46 +120,47 @@
     display:grid;grid-template-columns:1fr 1fr;gap:14px;
   }
   .card-vote-inner{
-    background:linear-gradient(135deg,#a78bfa,#7c3aed);
+    background:linear-gradient(135deg,#14532d,#166534);
     display:flex;align-items:center;justify-content:space-between;
     padding:22px 24px;
-    box-shadow:0 8px 24px rgba(124,58,237,0.3);
+    box-shadow:0 8px 24px rgba(22,163,74,0.25);
+    border:1px solid rgba(34,197,94,0.2);
+    text-decoration:none;
   }
-  .card-vote-inner.coming{opacity:.6;position:relative}
-  .card-vote-inner.coming::after{content:'🔒 Bientôt';position:absolute;top:12px;right:12px;background:rgba(255,200,0,.2);border:1px solid rgba(255,200,0,.4);color:#fcd34d;font-size:11px;font-weight:800;padding:2px 10px;border-radius:999px}
   .card-vote-inner h3{font-size:22px;font-weight:900;color:white;text-transform:uppercase;letter-spacing:.5px}
   .card-vote-inner p{font-size:12px;color:rgba(255,255,255,.7);font-weight:700;margin-top:3px}
   .card-vote-inner .v-icon{font-size:44px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.2))}
 
   .card-survival{
-    background:linear-gradient(135deg,#f97316,#ea580c);
+    background:linear-gradient(135deg,#1a1a1a,#0d0d0d);
     display:flex;align-items:center;justify-content:space-between;
     padding:22px 24px;
-    box-shadow:0 8px 24px rgba(249,115,22,0.35);
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    border:1px solid rgba(34,197,94,0.15);
   }
   .card-survival h3{font-size:22px;font-weight:900;color:white;text-transform:uppercase;letter-spacing:.5px}
-  .card-survival p{font-size:12px;color:rgba(255,255,255,.7);font-weight:700;margin-top:3px}
+  .card-survival p{font-size:12px;color:rgba(255,255,255,.6);font-weight:700;margin-top:3px}
   .card-survival .v-icon{font-size:44px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.2))}
 
   /* How to join section */
   .steps-section{position:relative;z-index:1;max-width:900px;margin:0 auto 60px;padding:0 16px}
-  .steps-title{font-size:22px;font-weight:900;color:white;margin-bottom:16px;text-shadow:0 2px 8px rgba(0,0,0,.15)}
-  .steps-title span{color:#071018;background:white;padding:2px 12px;border-radius:999px;margin-right:8px}
+  .steps-title{font-size:22px;font-weight:900;color:white;margin-bottom:16px;text-shadow:0 2px 8px rgba(0,0,0,.3)}
+  .steps-title span{color:#0a0a0a;background:var(--green);padding:2px 12px;border-radius:999px;margin-right:8px}
   .steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .step-card{background:rgba(255,255,255,.2);backdrop-filter:blur(10px);border:1.5px solid rgba(255,255,255,.35);border-radius:var(--card-r);padding:24px;transition:all .2s;cursor:none}
-  .step-card:hover{background:rgba(255,255,255,.3);transform:translateY(-3px)}
-  .step-n{font-size:42px;font-weight:900;color:rgba(255,255,255,.25);line-height:1;margin-bottom:8px}
+  .step-card{background:rgba(17,17,17,.7);backdrop-filter:blur(10px);border:1.5px solid rgba(34,197,94,.2);border-radius:var(--card-r);padding:24px;transition:all .2s;cursor:none}
+  .step-card:hover{background:rgba(34,197,94,.08);transform:translateY(-3px);border-color:rgba(34,197,94,.4)}
+  .step-n{font-size:42px;font-weight:900;color:rgba(34,197,94,.25);line-height:1;margin-bottom:8px}
   .step-title{font-size:16px;font-weight:900;color:white;margin-bottom:6px}
-  .step-desc{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6}
-  .step-ip{display:inline-block;background:rgba(0,0,0,.25);color:white;font-family:'Courier New',monospace;font-size:13px;padding:4px 12px;border-radius:8px;margin-top:8px;font-weight:700}
+  .step-desc{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6}
+  .step-ip{display:inline-block;background:rgba(34,197,94,.15);color:var(--green);font-family:'Courier New',monospace;font-size:13px;padding:4px 12px;border-radius:8px;margin-top:8px;font-weight:700;cursor:pointer;border:1px solid rgba(34,197,94,.3)}
 
   /* Footer */
-  footer{position:relative;z-index:1;text-align:center;padding:0 16px 32px;color:rgba(255,255,255,.7);font-size:13px;font-weight:700}
-  footer strong{color:white}
-  footer a{color:white}
+  footer{position:relative;z-index:1;text-align:center;padding:0 16px 32px;color:rgba(255,255,255,.5);font-size:13px;font-weight:700}
+  footer strong{color:var(--green)}
+  footer a{color:var(--green)}
 
   /* Toast */
-  .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:white;color:#0f172a;padding:12px 24px;font-weight:800;font-size:14px;z-index:999;transition:transform .3s ease;pointer-events:none;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+  .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--green);color:#0a0a0a;padding:12px 24px;font-weight:800;font-size:14px;z-index:999;transition:transform .3s ease;pointer-events:none;border-radius:999px;box-shadow:0 8px 24px rgba(34,197,94,.3)}
   .toast.show{transform:translateX(-50%) translateY(0)}
 
   @media(max-width:650px){
@@ -172,20 +177,20 @@
 </head>
 <body>
 
-<div class="bg-glow" id="bgGlow" style="background: radial-gradient(40% 40% at 36.3% 60%, rgba(255, 255, 255, 0.18) 0%, transparent 70%);"></div>
-<div class="bubbles" id="bubbles"><div class="bubble" style="width: 23.2639px; height: 23.2639px; left: 13.6975%; --d: 10.388652669721465s; --del: 8.473023736644484s;"></div><div class="bubble" style="width: 33.7288px; height: 33.7288px; left: 69.3978%; --d: 12.703150144512497s; --del: 6.535987924958155s;"></div><div class="bubble" style="width: 82.0357px; height: 82.0357px; left: 54.8195%; --d: 14.973789900229866s; --del: 4.206789539241461s;"></div><div class="bubble" style="width: 39.719px; height: 39.719px; left: 33.5675%; --d: 23.919560117989953s; --del: 1.6398449817529186s;"></div><div class="bubble" style="width: 71.3701px; height: 71.3701px; left: 14.5679%; --d: 19.123709997893187s; --del: 7.810839556572297s;"></div><div class="bubble" style="width: 48.8775px; height: 48.8775px; left: 62.4244%; --d: 22.689508855124576s; --del: 8.47834417907456s;"></div><div class="bubble" style="width: 40.268px; height: 40.268px; left: 10.0553%; --d: 13.541831904388307s; --del: 7.384412778766095s;"></div><div class="bubble" style="width: 33.9933px; height: 33.9933px; left: 50.1121%; --d: 20.470986949993872s; --del: 3.693741149253044s;"></div><div class="bubble" style="width: 38.2636px; height: 38.2636px; left: 99.7016%; --d: 16.139036035374115s; --del: 7.786981096390775s;"></div><div class="bubble" style="width: 23.2532px; height: 23.2532px; left: 32.7377%; --d: 23.346975502572544s; --del: 4.22024792067592s;"></div><div class="bubble" style="width: 41.9766px; height: 41.9766px; left: 89.3079%; --d: 21.610611847549194s; --del: 8.524879406929108s;"></div><div class="bubble" style="width: 68.1446px; height: 68.1446px; left: 14.3435%; --d: 20.42615173408354s; --del: 11.115832404825536s;"></div><div class="bubble" style="width: 93.8729px; height: 93.8729px; left: 8.28581%; --d: 16.35886693691865s; --del: 6.660681892552054s;"></div><div class="bubble" style="width: 87.7753px; height: 87.7753px; left: 83.5736%; --d: 14.488169139364064s; --del: 3.7200797353240525s;"></div><div class="bubble" style="width: 63.9852px; height: 63.9852px; left: 55.9013%; --d: 22.412545314033643s; --del: 1.0939425437806505s;"></div><div class="bubble" style="width: 69.2194px; height: 69.2194px; left: 42.2382%; --d: 14.352462395945187s; --del: 9.114845857956926s;"></div><div class="bubble" style="width: 30.0603px; height: 30.0603px; left: 8.22542%; --d: 22.94421559768721s; --del: 3.6298963274345377s;"></div><div class="bubble" style="width: 24.3325px; height: 24.3325px; left: 82.2527%; --d: 13.385838231350055s; --del: 12.3126494305785s;"></div></div>
-<div id="cur" style="left: 997.562px; top: 324.475px; width: 44px; height: 44px;"></div>
-<div id="cur2" style="left: 464px; top: 357px;"></div>
+<div class="bg-glow" id="bgGlow" style="background: radial-gradient(40% 40% at 50% 50%, rgba(34, 197, 94, 0.08) 0%, transparent 70%);"></div>
+<div class="bubbles" id="bubbles"></div>
+<div id="cur"></div>
+<div id="cur2"></div>
 
 <!-- Nav -->
 <nav>
-  <div class="nav-logo"><img src="Filo%20SMP%20%E2%80%93%20Minecraft%20Java%201.21.10_files/filo_(tate_no_yuusha_no_nariagari)-tate_no_yuusha_no_nariag.webp" alt="Filo SMP"></div>
+  <div class="nav-logo">🛡️</div>
   <div class="nav-links">
     <a href="#rejoindre">Rejoindre</a>
     <a href="#features">Fonctionnalités</a>
     <a href="https://discord.gg/58KawdBNRG" target="_blank">Discord</a>
   </div>
-  <button class="nav-play" onclick="downloadLauncher()">Télécharger</button>
+  <button class="nav-play" onclick="copyIP()">Copier l'IP</button>
 </nav>
 
 <!-- Main grid -->
@@ -204,19 +209,19 @@
     <div class="card card-hero" id="features">
       <div class="card-hero-text">
         <div class="card-hero-badge"><span></span> Serveur actif</div>
-        <h1>Bienvenue sur le<br><span>Filo SMP</span></h1>
+        <h1>Bienvenue sur<br><span>Shield Network</span></h1>
         <div class="card-hero-ip">
-          <span>FiloSMP-Launcher-Setup.msi</span>
-          <button onclick="downloadLauncher()">⬇️ Télécharger</button>
+          <span>filo.helloserv.net</span>
+          <button onclick="copyIP()">📋 Copier</button>
         </div>
       </div>
-      <img src="Filo%20SMP%20%E2%80%93%20Minecraft%20Java%201.21.10_files/filo_(tate_no_yuusha_no_nariagari)-tate_no_yuusha_no_nariag.webp" alt="Filo" class="card-hero-img" style="width:110px;height:110px;object-fit:cover;border-radius:16px;filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));animation:bob 3.5s ease-in-out infinite;flex-shrink:0">
+      <div class="card-hero-img" style="font-size:72px">🛡️</div>
     </div>
 
     <!-- Play now -->
-    <div class="card card-play" onclick="downloadLauncher()">
+    <div class="card card-play" onclick="copyIP()">
       <div class="card-play-left">
-        <h2>Télécharger le launcher</h2>
+        <h2>Copier l'IP</h2>
         <p>Java Edition · <strong>1.21.10</strong></p>
       </div>
       <div class="card-play-icon">⚔️</div>
@@ -224,13 +229,13 @@
 
     <!-- Vote + Survival row -->
     <div class="card-vote">
-      <div class="card card-vote-inner coming" style="text-decoration:none">
+      <a href="https://serveur-prive.net/minecraft/shieldnetwork" target="_blank" class="card card-vote-inner">
         <div>
           <h3>VOTER</h3>
-          <p>Bientôt disponible</p>
+          <p>Soutiens le serveur</p>
         </div>
         <div class="v-icon">🗳️</div>
-      </div>
+      </a>
       <div class="card card-survival">
         <div>
           <h3>SURVIE</h3>
@@ -254,8 +259,8 @@
     </div>
     <div class="step-card">
       <div class="step-n">02</div>
-      <div class="step-title">Télécharge le launcher</div>
-      <div class="step-desc">Clique sur « Télécharger » et installe le launcher Filo SMP :<br><span class="step-ip" style="cursor:pointer" onclick="downloadLauncher()">📥 FiloSMP-Launcher-Setup.msi</span></div>
+      <div class="step-title">Ajoute le serveur</div>
+      <div class="step-desc">Clique sur « Ajouter un serveur » et entre l'IP :<br><span class="step-ip" onclick="copyIP()">filo.helloserv.net</span></div>
     </div>
     <div class="step-card">
       <div class="step-n">03</div>
@@ -266,10 +271,10 @@
 </div>
 
 <footer>
-  <p>© 2025 <strong>Filo SMP</strong> · <a href="FiloSMP-Launcher-Setup.msi" download>Télécharger le launcher</a> · Minecraft Java 1.21.10 · Fait avec le ❤️</p>
+  <p>© 2026 <strong>Shield Network</strong> · IP : <a href="#" onclick="copyIP();return false">filo.helloserv.net</a> · Minecraft Java 1.21.10 · Fait avec le ❤️</p>
 </footer>
 
-<div class="toast" id="toast">✅ Téléchargement lancé !</div>
+<div class="toast" id="toast">✅ IP copiée !</div>
 
 <script>
   // Bubbles
@@ -287,11 +292,9 @@
   document.addEventListener('mousemove',e=>{
     cx=e.clientX; cy=e.clientY;
     cur2.style.left=cx+'px'; cur2.style.top=cy+'px';
-    // bg glow
     const px=(cx/innerWidth*100).toFixed(1)+'%', py=(cy/innerHeight*100).toFixed(1)+'%';
-    document.getElementById('bgGlow').style.background=`radial-gradient(ellipse 40% 40% at ${px} ${py},rgba(255,255,255,0.18) 0%,transparent 70%)`;
+    document.getElementById('bgGlow').style.background=`radial-gradient(ellipse 40% 40% at ${px} ${py},rgba(34,197,94,0.1) 0%,transparent 70%)`;
   });
-  // Cursor lag
   (function animCur(){
     cx2+=(cx-cx2)*0.12; cy2+=(cy-cy2)*0.12;
     cur.style.left=cx2+'px'; cur.style.top=cy2+'px';
@@ -302,18 +305,14 @@
     el.addEventListener('mouseleave',()=>{cur.style.width='22px';cur.style.height='22px'});
   });
 
-  function downloadLauncher(){
-    const a=document.createElement('a');
-    a.href='FiloSMP-Launcher-Setup.msi';
-    a.download='FiloSMP-Launcher-Setup.msi';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    const t=document.getElementById('toast');
-    t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'),2500);
+  function copyIP(){
+    navigator.clipboard.writeText('filo.helloserv.net').then(()=>{
+      const t=document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),2500);
+    });
   }
 </script>
 
-
-</body></html>
+</body>
+</html>
